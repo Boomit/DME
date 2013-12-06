@@ -15,8 +15,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//Kommentar
-
 void MainWindow::on_btnLogin_clicked()
 {
     Username = ui->txtUser->text();
@@ -162,29 +160,23 @@ int MainWindow::loadData()
 
     SendAll(Socket, request.c_str(), request.size());
 
-    //ofstream fout("output.xml");
-/*
-    qDebug() << "Empfange und schreibe Antwort in output.txt...";
+    ofstream fout("output.xml");
 
+    qDebug() << "Empfange und schreibe Antwort in output.xml...";
     while(true)
-    {
-        std::stringstream line;
-        try
         {
-            GetLine(Socket, line);
+            std::stringstream line;
+            try
+            {
+                GetLine(Socket, line);
+            }
+            catch(exception& e) // Ein Fehler oder Verbindungsabbruch
+            {
+                break; // Schleife verlassen
+            }
+            fout << line.str() << endl; // Zeile in die Datei schreiben.
         }
-        catch(exception& e) // Ein Fehler oder Verbindungsabbruch
-        {
-            break; // Schleife verlassen
-        }
-        const QString *temp = new const QString;
-        string *tem = new string;
-        &tem = line.str()+"\n";
-        //temp = tem;
-        //ui->textEdit->insertPlainText(&temp);// Zeile in die Datei schreiben.
-        //delete temp;
-    }
-*/
+
 #ifndef Q_OS_WIN
     ::close(Socket);
 #else
