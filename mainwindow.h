@@ -9,6 +9,8 @@
 #include <fstream>
 #include <stdexcept> // runtime_error
 #include <sstream>
+#include <QDomDocument>
+#include <QFile>
 
 #ifndef Q_OS_WIN
     #include <sys/socket.h> // socket(), connect()
@@ -45,6 +47,8 @@ private slots:
     void SendAll(int socket, const char* const buf, const int size);
     void GetLine(int socket, std::stringstream& line);
     void on_btnRefresh_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

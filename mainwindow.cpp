@@ -193,3 +193,36 @@ void MainWindow::on_btnRefresh_clicked()
 {
     loadData();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    QDomDocument doc("mydocument");
+    QFile file("output.xml");
+    if(!file.open(QIODevice::ReadOnly))
+        return;
+    if(!doc.setContent(&file))
+    {
+        file.close();
+        return;
+    }
+    file.close();
+
+    QDomElement root = doc.documentElement();
+    if(root.tagName() != "feuerwache")
+        return;
+
+    QDomNode n = root.firstChild();
+    while(!n.isNull())
+    {
+        QDomElement e = n.toElement();
+        if(!e.isNull())
+        {
+            Feuerwache f;
+
+            f.caption = e.toAttr();
+            qDebug() << f.caption;
+        }
+        n = n.nextSibling();
+    }
+
+}
