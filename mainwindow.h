@@ -44,6 +44,7 @@ private slots:
     std::runtime_error CreateSocketError();
     void SendAll(int socket, const char* const buf, const int size);
     void GetLine(int socket, std::stringstream& line);
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -20,7 +20,7 @@ void MainWindow::on_btnLogin_clicked()
     Username = ui->txtUser->text();
     Passwort = ui->txtPass->text();
 
-    qDebug() << Username << " : " << Passwort;
+    qDebug() << "Login: " << Username << ":" << Passwort;
 
     ui->btnLogin->hide();
     ui->btnLogout->show();
@@ -32,7 +32,7 @@ void MainWindow::on_btnLogout_clicked()
     Username = rand();
     Passwort = rand();
 
-    qDebug() << Username << " : " << Passwort;
+    qDebug() << "Logout: " << Username << ":" << Passwort;
 
     ui->txtPass->setText("Passwort");
     ui->txtUser->setText("Benutzername");
@@ -177,10 +177,17 @@ int MainWindow::loadData()
             fout << line.str() << endl; // Zeile in die Datei schreiben.
         }
 
+    fout.close();
+
 #ifndef Q_OS_WIN
     ::close(Socket);
 #else
     closesocket(Socket);
 #endif
     return 0;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    loadData();
 }

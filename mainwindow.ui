@@ -66,12 +66,18 @@
          <property name="text">
           <string>Login</string>
          </property>
+         <property name="shortcut">
+          <string>Return</string>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnLogout">
          <property name="text">
           <string>Logout</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+Return</string>
          </property>
         </widget>
        </item>
@@ -92,9 +98,26 @@
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>150</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+    <property name="shortcut">
+     <string>F5</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>textEdit</zorder>
    <zorder>lblTest</zorder>
+   <zorder>pushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
