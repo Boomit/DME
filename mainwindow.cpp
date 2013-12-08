@@ -25,6 +25,7 @@ void MainWindow::on_btnLogin_clicked()
     ui->btnLogin->hide();
     ui->btnLogout->show();
     loadData();
+
 }
 
 void MainWindow::on_btnLogout_clicked()
@@ -187,7 +188,7 @@ int MainWindow::loadData()
     return 0;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_btnRefresh_clicked()
 {
     loadData();
 }
