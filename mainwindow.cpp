@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->btnLogout->hide();
+    ui->btnRefresh->hide();
 }
 
 MainWindow::~MainWindow()
@@ -25,7 +26,7 @@ void MainWindow::on_btnLogin_clicked()
     ui->btnLogin->hide();
     ui->btnLogout->show();
     loadData();
-
+    ui->btnRefresh->show();
 }
 
 void MainWindow::on_btnLogout_clicked()
