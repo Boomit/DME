@@ -11,6 +11,7 @@
 #include <sstream>
 #include <QDomDocument>
 #include <QFile>
+#include <QtXml>
 
 #ifndef Q_OS_WIN
     #include <sys/socket.h> // socket(), connect()

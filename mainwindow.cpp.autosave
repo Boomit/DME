@@ -196,10 +196,62 @@ void MainWindow::on_btnRefresh_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QDomDocument doc;
-    ifstream fin("output.xml");
-    doc.setContent(fin);
-    QDomNodeList nodes = doc.elementsByTagName("feuerwache");
-    QString xmlString = doc.toString();
-    ui->textEdit->setText(xmlString);
+        QString filename = "output.xml";   
+        QFile file(filename);
+        if (!file.open(QFile::ReadOnly | QFile::Text))
+        {
+            std::cerr << "Error: Cannot read file " << qPrintable(filename)
+             << ": " << qPrintable(file.errorString())
+             << std::endl;
+        }
+        Rxml.setDevice(&file);
+        Rxml.readNext();
+    
+        while(!Rxml.atEnd())
+        {
+            if(Rxml.isStartElement())
+            {
+                if(Rxml.name() == "LAMPS")
+                {
+                   READNEXT();
+                }
+                else if(Rxml.name() == "LIGHT1")
+                {
+                   ReadLightElement(0);//entra
+                }
+                else if(Rxml.name() == "LIGHT2")
+                {
+                   ReadLightElement(1);//entra
+                }
+                else if(Rxml.name() == "LIGHT3")
+                {
+                   ReadLightElement(2);//entra
+                }
+                else if(Rxml.name() == "LIGHT4")
+                {
+                   ReadLightElement(3);//entra
+                }
+                else
+                {
+                  Rxml.raiseError(QObject::tr("Not a bookindex file"));
+                }
+            }
+            else
+            {
+                READNEXT();
+                }
+       }
+       file.close();
+       if (Rxml.hasError())
+      {
+              std::cerr << "Error: Failed to parse file "
+             << qPrintable(filename) << ": "
+             << qPrintable(Rxml.errorString()) << std::endl;
+      }
+      else if (file.error() != QFile::NoError)
+      {
+          std::cerr << "Error: Cannot read file " << qPrintable(filename)
+                   << ": " << qPrintable(file.errorString())
+                   << std::endl;
+      }
 }
